@@ -3,11 +3,17 @@ import pytest
 
 from helpers import get_user_data
 from methods.auth import AuthMethods
+from methods.orders import OrdersMethods
 
 
 @pytest.fixture(scope='session')
 def auth_methods():
     return AuthMethods()
+
+
+@pytest.fixture(scope='session')
+def orders_methods():
+    return OrdersMethods()
 
 
 @pytest.fixture(scope='function')
