@@ -20,8 +20,7 @@ def orders_methods():
 def test_user(auth_methods):
     '''Регистрация тестового пользователя с последующим удалением.'''
     user_data = get_user_data()
-    _, body = auth_methods.register_user(user_data)
-    token = body.get('accessToken')
+    token = auth_methods.register_user(user_data).json().get('accessToken')
     yield user_data, token
     auth_methods.delete_user(token)
 
@@ -30,6 +29,6 @@ def test_user(auth_methods):
 def existing_email(auth_methods):
     '''Регистрация тестового пользователя с последующим удалением.
     Для теста с изменением email пользователя на уже существующий.'''
-    _, body = auth_methods.register_user(get_user_data())
+    body = auth_methods.register_user(get_user_data()).json()
     yield body['user']['email']
     auth_methods.delete_user(body.get('accessToken'))

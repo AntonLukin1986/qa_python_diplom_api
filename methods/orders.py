@@ -9,21 +9,18 @@ class OrdersMethods:
 
     @allure.step('Получение списка ингредиентов')
     def get_ingredients(self):
-        response = requests.get(url=API_INGREDIENTS)
-        return response.status_code, response.json()
+        return requests.get(url=API_INGREDIENTS).json()
 
     @allure.step('Создание нового заказа')
     def make_order(self, ingredients_ids, token):
-        response = requests.post(
+        return requests.post(
             url=API_ORDERS,
             data={'ingredients': ingredients_ids},
             headers={'Authorization': token}
         )
-        return response.status_code, response.json() if response.ok else response
 
     @allure.step('Получение заказов пользователя')
     def get_user_orders(self, token):
-        response = requests.get(
+        return requests.get(
             url=API_ORDERS, headers={'Authorization': token}
         )
-        return response.status_code, response.json()
