@@ -1,6 +1,4 @@
 '''Методы нэймспейса «Orders» API web-сервиса «Stellar Burgers».'''
-import random
-
 import allure
 import requests
 

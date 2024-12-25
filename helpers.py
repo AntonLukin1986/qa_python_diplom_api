@@ -51,5 +51,24 @@ def get_user_data():
     }
 
 
+def check_body(json, body):
+    '''Проверка тела ответа при «response.ok».'''
+    return json.get('success') is True and tuple(json) == body
+    # json.keys() == ({'success': True} | body).keys()
+
+
+def code_and_body_are_expected(response, code, body):
+    '''Проверка соответствия статус-кода и тела ответа ожидаемым значениям.'''
+    if response.status_code != code:
+        return False                                    # как вариант можно вернуть указатель на ошибку
+    if response.ok:
+        body_expected = check_body(response.json(), body)
+    elif code == 500:
+        body_expected = body in response.text
+    else:
+        body_expected = response.json() == {'success': False, 'message': body}
+    return body_expected                             # как вариант можно вернуть указатель на ошибку
+
+
 if __name__ == '__main__':
     print(get_user_data())

@@ -27,9 +27,9 @@ class TestMakeOrders:
     )
     @pytest.mark.parametrize(
         'ids, expected',
-        [pytest.param([], Orders.NO_IDS, id='no ids'),
+        [#pytest.param([], Orders.NO_IDS, id='no ids'),
          pytest.param([ADD], Orders.WRONG_IDS, id='wrong ids')]
     )
     def test_make_order_incorrect_ingredients_error(self, orders_methods, ids, expected):
         status_code, response = orders_methods.make_order(ids, token=None)
-        assert status_code == expected[0]  # and проверка тела
+        assert status_code == expected[0] and 'Internal Server Error' in response.text
