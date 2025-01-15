@@ -8,4 +8,4 @@
 ### Запуск автотестов и создание allure-отчета
 
 1. Установить зависимости: ```pip install -r requirements.txt```
-2. Запустить все тесты: ```pytest tests --alluredir=allure_results```
+2. Запустить тесты: ```pytest tests --alluredir=allure_results```

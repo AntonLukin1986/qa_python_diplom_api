@@ -18,12 +18,8 @@ class AuthMethods:
         )
 
     @allure.step('Авторизация пользователя')
-    def login_user(self, user_data, token):
-        return requests.post(
-            url=API_AUTH_LOGIN,
-            data=user_data,
-            headers={'Authorization': token}
-        )
+    def login_user(self, user_data):
+        return requests.post(url=API_AUTH_LOGIN, data=user_data)
 
     @allure.step('Изменение данных пользователя')
     def change_user_data(self, to_change, token=None):

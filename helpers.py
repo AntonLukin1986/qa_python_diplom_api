@@ -71,7 +71,3 @@ def code_and_body_are_expected(response, code, body):
         body_expected = response.json() == {'success': False, 'message': body}
     info = response.text if code == 500 else response.json()
     return body_expected, f'Неверное тело ответа: {info}'
-
-
-if __name__ == '__main__':
-    print(get_user_data())
