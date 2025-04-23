@@ -41,3 +41,11 @@ class TestUserChangeData:
             response, *Auth.EMAIL_EXISTS
         )
         assert result, message
+
+    @allure.title('Успешное удаление пользователя')
+    def test_delete_user_success(self, auth_methods, test_user):
+        _, token = test_user
+        response = auth_methods.delete_user(token)
+        expected_code, expected_body = Auth.USER_DELETED
+        assert (response.status_code == expected_code and
+                response.json() == expected_body)

@@ -2,7 +2,7 @@
 import allure
 import requests
 
-from config import API_INGREDIENTS, API_ORDERS
+from config import API_ALL_ORDERS, API_INGREDIENTS, API_ORDERS
 
 
 class OrdersMethods:
@@ -24,3 +24,7 @@ class OrdersMethods:
         return requests.get(
             url=API_ORDERS, headers={'Authorization': token}
         )
+
+    @allure.step('Получение всех заказов')
+    def get_all_orders(self):
+        return requests.get(url=API_ALL_ORDERS)

@@ -23,9 +23,12 @@ class Auth:
     MISSED_FIELD = 403, 'Email, password and name are required fields'
     WRONG_FIELD = 401, 'email or password are incorrect'
 
+    USER_DELETED = 202, {'success': True, 'message': 'User successfully removed'}
+
 
 class Orders:
     '''Управление заказами.'''
+    TOTAL_ORDERS = 50
     CREATED = 200, ['name', 'order']
     ORDERS_OK = 200, ['orders', 'total', 'totalToday']
 
