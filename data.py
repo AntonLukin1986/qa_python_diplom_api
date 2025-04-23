@@ -31,3 +31,10 @@ class Orders:
 
     NO_IDS = 400, 'Ingredient ids must be provided'
     WRONG_IDS = 500, 'Internal Server Error'
+
+
+class ResetPassword:
+    '''Сброс и восстановление пароля.'''
+    CODE = 200, {'success': True, 'message': 'Reset email sent'}
+    BAD_TOKEN = 404, 'Incorrect reset token'
+    NEW_PASS_DATA = {'password': 'A0B9', 'token': 'wrongtoken'}

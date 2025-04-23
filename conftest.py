@@ -4,11 +4,17 @@ import pytest
 from helpers import get_user_data
 from methods.auth import AuthMethods
 from methods.orders import OrdersMethods
+from methods.reset_pass import ResetPasswordMethods
 
 
 @pytest.fixture(scope='session')
 def auth_methods():
     return AuthMethods()
+
+
+@pytest.fixture(scope='session')
+def reset_pass_methods():
+    return ResetPasswordMethods()
 
 
 @pytest.fixture(scope='session')
