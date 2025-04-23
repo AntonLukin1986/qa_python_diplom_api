@@ -51,12 +51,12 @@ def get_user_data():
     }
 
 
-def check_body(json, body):
+def check_body(response_body, body):
     '''Проверка тела ответа при «response.ok».'''
-    if not json.get('success') is True:
+    if not response_body.get('success') is True:
         return False
-    del json['success']
-    return sorted(json) == sorted(body)
+    del response_body['success']
+    return sorted(response_body) == sorted(body)
 
 
 def code_and_body_are_expected(response, code, body):
@@ -64,10 +64,10 @@ def code_and_body_are_expected(response, code, body):
     if response.status_code != code:
         return False, f'Получен код: {response.status_code} Ожидался: {code}'
     if response.ok:
-        body_expected = check_body(response.json(), body)
+        body_is_expected = check_body(response.json(), body)
     elif code == 500:
-        body_expected = body in response.text
+        body_is_expected = body in response.text
     else:
-        body_expected = response.json() == {'success': False, 'message': body}
+        body_is_expected = response.json() == {'success': False, 'message': body}
     info = response.text if code == 500 else response.json()
-    return body_expected, f'Неверное тело ответа: {info}'
+    return body_is_expected, f'Неверное тело ответа: {info}'

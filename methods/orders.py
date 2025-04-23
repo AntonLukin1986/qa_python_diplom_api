@@ -9,7 +9,7 @@ class OrdersMethods:
 
     @allure.step('Получение списка ингредиентов')
     def get_ingredients(self):
-        return requests.get(url=API_INGREDIENTS).json()
+        return requests.get(url=API_INGREDIENTS)
 
     @allure.step('Создание нового заказа')
     def make_order(self, ingredients_ids, token):

@@ -16,8 +16,10 @@ class TestMakeOrders:
                  pytest.param(True, id='auth')]
     )
     def test_make_order_success(self, orders_methods, test_user, auth):
-        json = orders_methods.get_ingredients()
-        ingredients = random.sample(json['data'], k=random.randint(1, 5))
+        response_body = orders_methods.get_ingredients().json()
+        ingredients = random.sample(
+            response_body['data'], k=random.randint(1, 5)
+        )
         ingredients_ids = [ingredient['_id'] for ingredient in ingredients]
         _, token = test_user
         response = orders_methods.make_order(
